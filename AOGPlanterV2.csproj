@@ -1,0 +1,76 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants);OF_DELTA</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenTK.GLControl" Version="4.0.2" />
+    <PackageReference Include="Proxoft.ValueObjects" Version="1.1.0" />
+    <PackageReference Include="Resource.Embedder" Version="2.2.0" />
+    <PackageReference Include="WinForms.DataVisualization" Version="1.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AgOpenGPS.resources">
+      <HintPath>obj\x86\Debug\es\AgOpenGPS.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="ColorPicker">
+      <HintPath>References\ColorPicker.dll</HintPath>
+    </Reference>
+    <Reference Include="Control.Draggable">
+      <HintPath>References\Control.Draggable.dll</HintPath>
+    </Reference>
+    <Reference Include="Keypad">
+      <HintPath>..\..\..\Documents\Projects\agopengps\SourceCode\References\Keypad.dll</HintPath>
+    </Reference>
+        <Reference Include="OpenTK">
+      <HintPath>References\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl">
+      <HintPath>References\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="RepeatButtonControl">
+      <HintPath>References\RepeatButtonControl.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+        <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Vehicle.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Vehicle.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Properties\Vehicle.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>
