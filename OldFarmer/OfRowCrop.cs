@@ -6,7 +6,7 @@ namespace AOGPlanterV2.OF
         public const string Normal = "normal";
 
         private FormAOP mf { get; }
-        //		private Dictionary<string, vec3> conditionLookup { get; set; }
+        //		my private Dictionary<string, vec3> conditionLookup { get; set; }
         private Dictionary<int, SectionState> sectionState { get; set; }
         public OfRowCrop(FormAOP _f)
         {
