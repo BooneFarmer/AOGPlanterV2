@@ -25,6 +25,7 @@ namespace AOGPlanterV2
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.BackColor = Color.FromArgb(245, 245, 245);
+            this.BringToFront();    
 
             // Display box
             txtDisplay = new TextBox

@@ -244,6 +244,7 @@
             ShowIcon = false;
             ShowInTaskbar = false;
             Text = "FormAOP";
+            TopMost = true;
             TransparencyKey = Color.White;
             WindowState = FormWindowState.Maximized;
             Load += on_Load;

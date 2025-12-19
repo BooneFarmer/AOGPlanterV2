@@ -9,12 +9,15 @@ namespace AOGPlanterV2
     {
         public static UdpClient udpServer;
         private static Thread listenThread;
-        private static int port = 9999; // Port to listen on
+        private static int port = 9998; // Port to listen on
         private static AOPUDP udp;
         private float summaryPopulation = 10000.0f;
         private float summarySingulation = 88.8f;
         private float summaryDoublePercent = 1.1f;
         private float summarySkipPercent = 2.2f;
+        private byte[] myByteData = {0x00};
+
+       
 
         private FormAOP mf;
         //        private OfRowCrop rc;  
@@ -309,7 +312,7 @@ namespace AOGPlanterV2
         {
             if (udp.mf.InvokeRequired)
             {
-                _ = udp.mf.Invoke((MethodInvoker)(() => udp.mf.txtSkips.Text = text));
+                udp.mf.Invoke((MethodInvoker)(() => udp.mf.txtSkips.Text = text));
 
             }
             else
@@ -358,7 +361,7 @@ namespace AOGPlanterV2
 
         public void StartUDPServer()
         {
-            /* //This area used foe tresting
+         /*    //This area used foe tresting
           if (mf.InvokeRequired)
           {
               _ = mf.Invoke((MethodInvoker)(() => mf.txtPopulation.Text = "1234"));
@@ -380,20 +383,22 @@ namespace AOGPlanterV2
 
         private void ListenForMessages()
         {
-            //            udp.mf.rc.rcSkips[4] = 5;  // for testing.  This works
+            //udp.mf.rc.rcSkips[4] = 5;  // for testing.  This works
             while (true)
             {
                 msgCount += 1;
-                //                UpdateLabel("XOXO");  // this test works
-                //                udp.mf.rc.rcSkips[3] = 4;
+               //                 UpdateLabel("XOXO");  // this test works
+               //                 udp.mf.rc.rcSkips[3] = 4;
+                
+
                 try
                 {
                     // Listen for UDP packets on the given port
-                    IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, port);
+                    IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 0);
                     byte[] data = udpServer.Receive(ref endPoint);
                     string receivedData = Encoding.UTF8.GetString(data);
                     msgCount += 1;
-                    //                    UpdateLabel("123");  // works if AgOpenGPS is started
+                  // UpdateLabel("123");  // works if AgOpenGPS is started
                     mf.rc.rcSkips[5] = 6;  // likewise
 
                     if (data.Length > 4 && data[0] == 0x80 && data[1] == 0x81)
@@ -681,7 +686,24 @@ namespace AOGPlanterV2
         public void SendPgnToLoop(byte[] byteData)
         {
             //UdpClient client = new UdpClient();
-            udpServer.Send(byteData, byteData.Length, "192.168.1.190", 8888);
+            udpServer.Send(byteData, byteData.Length, "192.168.1.192", 9998);
+        }
+        public void StartHelloLoop(string targetIp, int targetPort)
+        {
+            new Thread(() =>
+            {
+                using (UdpClient udp = new UdpClient())
+                {
+                    byte[] data = Encoding.ASCII.GetBytes("hello");
+
+                    while (true)
+                    {
+                        udp.Send(data, data.Length, "192.168.1.192", 9998);
+                        Thread.Sleep(1000); // once per second
+                    }
+                }
+            })
+            { IsBackground = true }.Start();
         }
 
     }

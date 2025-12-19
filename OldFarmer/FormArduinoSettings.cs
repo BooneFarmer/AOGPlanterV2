@@ -7,6 +7,7 @@ namespace AOGPlanterV2.OldFarmer
 
 //        public float numberOfRows = 1;
         private AOPUDP udp = null;
+        
         //private FormArduinoSettings fas = null;
 
         /// <summary>
@@ -16,6 +17,7 @@ namespace AOGPlanterV2.OldFarmer
         public FormArduinoSettings(Form callingForm)
         {
             mf = callingForm as FormAOP;
+            udp = mf.udp;
             InitializeComponent();
             nudUpDown = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)nudUpDown).BeginInit();
@@ -31,6 +33,7 @@ namespace AOGPlanterV2.OldFarmer
             nudUpDown.Size = new Size(120, 23);
             nudUpDown.TabIndex = 0;
             nudUpDown.Value = new decimal(new int[] { 10, 0, 0, 0 });
+        
             // numericUpDown1.Click += btnNumericUpDown;
             // 
             // Inputs
@@ -282,23 +285,23 @@ namespace AOGPlanterV2.OldFarmer
             //mf.SendPgnToLoop(mf.p_224.pgn);
 
             //mf.TimedMessageBox(1000, gStr.gsAutoSteerPort, "Settings Sent To Planter Monitor Module");
-            //              fas.p_224.pgn[udp.p_224.highRowWidthX10] = unchecked((byte)((int)(Properties.Settings.Default.setPlanterRowWidth * 10.0f) >> 8));
-            //            udp.p_224.pgn[udp.p_224.lowRowWidthX10] = unchecked((byte)(int)(Properties.Settings.Default.setPlanterRowWidth * 10.0f));
-            //            udp.p_224.pgn[udp.p_224.numSections] = (byte)Properties.Settings.Default.setPlanterNumRows;
-            //            udp.p_224.pgn[udp.p_224.targetSpeedX10] = (byte)(Properties.Settings.Default.setPlanterSpeed * 10.0f);
-            //udp.p_224.pgn[udp.p_224.highTargetPopulation] = unchecked((byte)((int)(Properties.Settings.Default.setPlanterTargetPopulation / 10) >> 8));
-            //udp.p_224.pgn[udp.p_224.lowTargetPopulation] = unchecked((byte)(int)(Properties.Settings.Default.setPlanterTargetPopulation / 10));
-            //udp.p_224.pgn[udp.p_224.doublesFactor] = unchecked((byte)(int)(Properties.Settings.Default.setPlanterDoublesFactor * 100.0f));
-            //if (Properties.Settings.Default.setMenu_isMetric)
-            //{
-            //    udp.p_224.pgn[udp.p_224.isMetric] = unchecked((byte)(int)1);
-            //}
-            //else
-            //{
-            //    udp.p_224.pgn[udp.p_224.isMetric] = unchecked((byte)(int)0);
-            //}
+            udp.p_224.pgn[udp.p_224.highRowWidthX10] = unchecked((byte)((int)(Properties.Settings.Default.setPlanterRowWidth * 10.0f) >> 8));
+            udp.p_224.pgn[udp.p_224.lowRowWidthX10] = unchecked((byte)(int)(Properties.Settings.Default.setPlanterRowWidth * 10.0f));
+            udp.p_224.pgn[udp.p_224.numSections] = (byte)Properties.Settings.Default.setPlanterNumRows;
+            udp.p_224.pgn[udp.p_224.targetSpeedX10] = (byte)(Properties.Settings.Default.setPlanterSpeed * 10.0f);
+            udp.p_224.pgn[udp.p_224.highTargetPopulation] = unchecked((byte)((int)(Properties.Settings.Default.setPlanterTargetPopulation / 10) >> 8));
+            udp.p_224.pgn[udp.p_224.lowTargetPopulation] = unchecked((byte)(int)(Properties.Settings.Default.setPlanterTargetPopulation / 10));
+            udp.p_224.pgn[udp.p_224.doublesFactor] = unchecked((byte)(int)(Properties.Settings.Default.setPlanterDoublesFactor * 100.0f));
+            if (Properties.Settings.Default.setMenu_isMetric)
+            {
+                udp.p_224.pgn[udp.p_224.isMetric] = unchecked((byte)(int)1);
+            }
+            else
+            {
+                udp.p_224.pgn[udp.p_224.isMetric] = unchecked((byte)(int)0);
+            }
 
-            //          udp.SendPgnToLoop(fas.p_224.pgn);
+            //udp.SendPgnToLoop(udp.p_224.pgn);
         }
 
         private void SavePMSettings()

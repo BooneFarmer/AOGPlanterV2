@@ -136,7 +136,7 @@ namespace AOGPlanterV2
             MinimumSize = new Size(486, 584);
             Name = "FormNumeric";
             ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.WindowsDefaultBounds;
             Text = "Enter a Value";
             Load += FormNumeric_Load;
             ResumeLayout(false);

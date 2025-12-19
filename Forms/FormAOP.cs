@@ -34,7 +34,7 @@ namespace AOGPlanterV2
         /// </summary>
         public CSound sounds;
 
-        private AOPUDP udp;
+        public AOPUDP udp;
 
         private DateTime curTime;
         public FormAOP()
@@ -42,7 +42,7 @@ namespace AOGPlanterV2
 
             InitializeComponent();
 
-            //           udp = new AOPUDP(this);
+             udp = new AOPUDP(this);
             //AOPUDP.msgCount
             //jim CheckSettingsNotNull();
             // Row Crop Planter Data
@@ -239,6 +239,7 @@ namespace AOGPlanterV2
             formF.Focus();
 
             udp = new AOPUDP(this);  // create instance
+            udp.StartHelloLoop("192.168.1.192", 9998);
             udp.StartUDPServer();
         }
 
