@@ -135,15 +135,19 @@ namespace AOGPlanterV2.OldFarmer
                 nudUpDown.Maximum = new decimal(new int[] { 210000, 0, 0, 0 });
                 nudUpDown.Minimum = new decimal(new int[] { 1000, 0, 0, 0 });
                 nudUpDown.Value = (decimal)AOGPlanterV2.Properties.Settings.Default.setPlanterTargetPopulation;
+                keypad.StartPosition = FormStartPosition.CenterParent;
+                keypad.ShowInTaskbar = false;
+                keypad.Owner = this;
+                keypad.TopMost = true;
                 var result = keypad.ShowDialog(); // Show keypad
-
+              
                 if (result == DialogResult.OK)
                 {
                     nudUpDown.Value = keypad.Result;
                 }
-
+               
                 // Always return focus to numericUpDown1
-                //  numericUpDown1.Focus();
+                //numericUpDown1.Focus();
                 nUDPopulation.Value = nudUpDown.Value;
                 Properties.Settings.Default.setPlanterTargetPopulation = (float)nudUpDown.Value;
                 btnSavePlanterSettings.Focus();
@@ -169,6 +173,10 @@ namespace AOGPlanterV2.OldFarmer
             nudUpDown.Value = (decimal)AOGPlanterV2.Properties.Settings.Default.setPlanterRowWidth;
             using (var keypad = new NumericKeypad(nudUpDown.Value))
             {
+                keypad.StartPosition = FormStartPosition.CenterParent;
+                keypad.ShowInTaskbar = false;
+                keypad.Owner = this;
+                keypad.TopMost = true;
                 var result = keypad.ShowDialog(); // Show keypad
 
                 if (result == DialogResult.OK)
@@ -200,6 +208,10 @@ namespace AOGPlanterV2.OldFarmer
             nudUpDown.Value = (decimal)AOGPlanterV2.Properties.Settings.Default.setPlanterSpeed;
             using (var keypad = new NumericKeypad(nudUpDown.Value))
             {
+                keypad.StartPosition = FormStartPosition.CenterParent;
+                keypad.ShowInTaskbar = false;
+                keypad.Owner = this;
+                keypad.TopMost = true;
                 var result = keypad.ShowDialog(); // Show keypad
 
                 if (result == DialogResult.OK)
@@ -344,6 +356,10 @@ namespace AOGPlanterV2.OldFarmer
             nudUpDown.Value = (decimal)AOGPlanterV2.Properties.Settings.Default.setPlanterDoublesFactor;
             using (var keypad = new NumericKeypad(nudUpDown.Value))
             {
+                keypad.StartPosition = FormStartPosition.CenterParent;
+                keypad.ShowInTaskbar = false;
+                keypad.Owner = this;
+                keypad.TopMost = true;
                 var result = keypad.ShowDialog(); // Show keypad
 
                 if (result == DialogResult.OK)
@@ -397,6 +413,10 @@ namespace AOGPlanterV2.OldFarmer
             nudUpDown.Value = (decimal)Properties.Settings.Default.setPlanterNumRows;
             using (var keypad = new NumericKeypad(nudUpDown.Value))
             {
+                keypad.StartPosition = FormStartPosition.CenterParent;
+                keypad.ShowInTaskbar = false;
+                keypad.Owner = this;
+                keypad.TopMost = true;
                 var result = keypad.ShowDialog(); // Show keypad
 
                 if (result == DialogResult.OK)
