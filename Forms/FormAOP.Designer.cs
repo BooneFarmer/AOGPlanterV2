@@ -211,7 +211,7 @@
             txtUpTime.BackColor = Color.DimGray;
             txtUpTime.Font = new Font("Tahoma", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txtUpTime.ForeColor = SystemColors.ButtonFace;
-            txtUpTime.Location = new Point(266, 129);
+            txtUpTime.Location = new Point(266, 120);
             txtUpTime.Name = "txtUpTime";
             txtUpTime.Size = new Size(124, 39);
             txtUpTime.TabIndex = 137;

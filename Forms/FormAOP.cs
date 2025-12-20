@@ -15,11 +15,12 @@ namespace AOGPlanterV2
 
         [System.Runtime.InteropServices.DllImport("User32.dll")]
         private static extern bool ShowWindow(IntPtr hWind, int nCmdShow);
+        private FormSkipsDisplay skipsDisplay;
 
 
         // UDP Socket
- //       private Socket UDPSocket;
- //       private EndPoint endPointUDP = new IPEndPoint(IPAddress.Any, 0);
+        //       private Socket UDPSocket;
+        //       private EndPoint endPointUDP = new IPEndPoint(IPAddress.Any, 0);
 
 
         // Data stream
@@ -35,14 +36,15 @@ namespace AOGPlanterV2
         public CSound sounds;
 
         public AOPUDP udp;
-
+        public FormSkipsChart skp;
         private DateTime curTime;
         public FormAOP()
         {
 
             InitializeComponent();
 
-             udp = new AOPUDP(this);
+            udp = new AOPUDP(this);
+            skp = new FormSkipsChart(this);
             //AOPUDP.msgCount
             //jim CheckSettingsNotNull();
             // Row Crop Planter Data
@@ -132,9 +134,11 @@ namespace AOGPlanterV2
         private void Population_Click(object sender, EventArgs e)
         {
             //check if window already exists
-            //            Form fcg = Application.OpenForms["FormSteerGraph"];
+            ShowSkipsDisplay();
+            /*
             Form fcg = Application.OpenForms["FormSkipsChart"];
             Form fch = Application.OpenForms["FormPopChart"];
+//            Form fcj = Application.OpenForms["FormSkipsDisplay"];
             if (fcg != null)
             {
                 fcg.Focus();
@@ -145,11 +149,18 @@ namespace AOGPlanterV2
                 fch.Focus();
                 return;
             }
-
+            //if (fcj != null)
+            //{
+            //    fcj.Focus();
+            //    return;
+            //}
             Form formH = new FormSkipsChart(this);
             Form formG = new OldFarmer.FormPopChart(this);
-            formG.Show(this);
+//            Form formJ = new FormSkipsDisplay(this);
             formH.Show(this);
+//          formJ.Show(this);
+            formG.Show(this);
+            */
         }
 
         private void lblPopulation_Click(object sender, EventArgs e)
@@ -222,6 +233,7 @@ namespace AOGPlanterV2
             Form formG = new OldFarmer.FormPopChart(this);
             formG.Show(this);
             formH.Show(this);
+            ShowSkipsDisplay();
         }
 
         private void on_Load(object sender, EventArgs e)
@@ -328,8 +340,18 @@ namespace AOGPlanterV2
         {
 
         }
-
-        //    }
+        private void ShowSkipsDisplay()
+        {
+            if (skipsDisplay == null || skipsDisplay.IsDisposed)
+            {
+                skipsDisplay = new FormSkipsDisplay(this);
+                skipsDisplay.Show(this);   // owner = FormAOP
+            }
+            else
+            {
+                skipsDisplay.BringToFront();
+            }
+        }
 
     }
 }

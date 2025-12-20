@@ -7,6 +7,8 @@ namespace AOGPlanterV2
         private readonly FormAOP mf = null;
         int lastHelloFromPlanter = 0;
         int msgSpacer = 0;
+        public event EventHandler TickSync;
+
         public FormSkipsChart(Form callingForm)
         {
             mf = callingForm as FormAOP;
@@ -15,6 +17,7 @@ namespace AOGPlanterV2
         private void timer1_Tick(object sender, EventArgs e)
         {
             DrawChart();
+            TickSync?.Invoke(this, EventArgs.Empty);
         }
 
         private void DrawChart()
@@ -58,7 +61,7 @@ namespace AOGPlanterV2
 
         private void FormSkipChart_Load(object sender, EventArgs e)
         {
-            timer1.Interval = 1;
+            timer1.Interval = 3000;
             //			timer1.Interval = (int)((1 / (double)mf.fixUpdateHz) * 1000);
             if (Properties.Settings.Default.setPlanterAlarm_Active == true)
             {

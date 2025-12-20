@@ -21,12 +21,12 @@ namespace AOGPlanterV2.OldFarmer
             InitializeComponent();
             nudUpDown = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)nudUpDown).BeginInit();
-            SuspendLayout();
+//            SuspendLayout();
             // 
             // numericUpDown1
             // 
             nudUpDown.DecimalPlaces = 2;
-            nudUpDown.Location = new Point(50, 30);
+//            nudUpDown.Location = new Point(50, 30);
             nudUpDown.Maximum = new decimal(new int[] { 32, 0, 0, 0 });
             nudUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudUpDown.Name = "numericUpDown1";
@@ -131,7 +131,7 @@ namespace AOGPlanterV2.OldFarmer
             using (var keypad = new NumericKeypad(nudUpDown.Value))
             {
                 nudUpDown.DecimalPlaces = 1;
-                nudUpDown.Location = new Point(50, 30);
+//                nudUpDown.Location = new Point(50, 30);
                 nudUpDown.Maximum = new decimal(new int[] { 210000, 0, 0, 0 });
                 nudUpDown.Minimum = new decimal(new int[] { 1000, 0, 0, 0 });
                 nudUpDown.Value = (decimal)AOGPlanterV2.Properties.Settings.Default.setPlanterTargetPopulation;
@@ -166,7 +166,7 @@ namespace AOGPlanterV2.OldFarmer
         private void nudRowSpacing_Clicked(object sender, EventArgs e)
         {
             nudUpDown.DecimalPlaces = 1;
-            nudUpDown.Location = new Point(50, 30);
+//            nudUpDown.Location = new Point(50, 30);
             nudUpDown.Maximum = new decimal(new int[] { 200, 0, 0, 0 });
             nudUpDown.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             //                numericUpDown1.Minimum = new float.Single(new float[] { .1f, 0, 0, 0 });
@@ -202,7 +202,7 @@ namespace AOGPlanterV2.OldFarmer
         private void nudPlantingSpeed_Clicked(object sender, EventArgs e)
         {
             nudUpDown.DecimalPlaces = 1;
-            nudUpDown.Location = new Point(50, 30);
+//            nudUpDown.Location = new Point(50, 30);
             nudUpDown.Maximum = new decimal(new int[] { 50, 0, 0, 0 });
             nudUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudUpDown.Value = (decimal)AOGPlanterV2.Properties.Settings.Default.setPlanterSpeed;
@@ -350,7 +350,7 @@ namespace AOGPlanterV2.OldFarmer
         private void nudPlanterDoublesFactor_clicked(object sender, EventArgs e)
         {
             nudUpDown.DecimalPlaces = 2;
-            nudUpDown.Location = new Point(50, 30);
+//            nudUpDown.Location = new Point(50, 30);
             nudUpDown.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             nudUpDown.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             nudUpDown.Value = (decimal)AOGPlanterV2.Properties.Settings.Default.setPlanterDoublesFactor;
@@ -407,7 +407,7 @@ namespace AOGPlanterV2.OldFarmer
         private void numRowsClick(object sender, EventArgs e)
         {
             nudUpDown.DecimalPlaces = 0;
-            nudUpDown.Location = new Point(50, 30);
+//            nudUpDown.Location = new Point(50, 30);
             nudUpDown.Maximum = new decimal(new int[] { 32, 0, 0, 0 });
             nudUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudUpDown.Value = (decimal)Properties.Settings.Default.setPlanterNumRows;

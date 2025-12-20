@@ -57,6 +57,7 @@ namespace AOGPlanterV2.OldFarmer
         private void btnPopChart_Click(object sender, EventArgs e)
         {
             Close();
+
             Form formJ = new OldFarmer.PopulationChart2(mf);
             formJ.Show(mf);
         }
