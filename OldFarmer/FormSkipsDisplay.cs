@@ -9,7 +9,7 @@ namespace AOGPlanterV2
     public class FormSkipsDisplay : Form
     {
         private readonly FormAOP mf;
-       // private readonly System.Windows.Forms.Timer repaintTimer;
+        // private readonly System.Windows.Forms.Timer repaintTimer;
         private readonly int numOfSections;
         private const int HistoryRows = 10; // 1 live + 6 below
         private Color[,] colorBuffer;
@@ -19,9 +19,10 @@ namespace AOGPlanterV2
         int gap = 6;   // pixels between rectangles
 
         public FormSkipsDisplay(FormAOP mainForm)
-//        public FormSkipsDisplay(Form callingForm)
+        //        public FormSkipsDisplay(Form callingForm)
         {
-                mf = mainForm;
+            InitializeComponent();
+            mf = mainForm;
             // mf = callingForm as FormAOP;
 
             // Subscribe to SkipsChart timer
@@ -33,14 +34,14 @@ namespace AOGPlanterV2
             for (int r = 0; r < HistoryRows; r++)
                 for (int c = 0; c < numOfSections; c++)
                     colorBuffer[r, c] = Color.Green;
-            
+
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             StartPosition = FormStartPosition.Manual;
             BackColor = Color.Lime;          // pick a color that you don't use elsewhere
             TransparencyKey = Color.Lime;    // everything that color becomes transparent
             BackColor = Color.Black;
-//            Opacity = 0.9;
+            //            Opacity = 0.7;
             TopMost = true;
 
             Bounds = Screen.PrimaryScreen.Bounds;
@@ -48,9 +49,9 @@ namespace AOGPlanterV2
             int rectHeight = screen.Height / 48;   // same value used in OnPaint
             int totalRowsHeight = HistoryRows * rectHeight;
             Height = totalRowsHeight + 10; // small padding
-            Width = (int)(screen.Width /1.45f);
+            Width = (int)(screen.Width / 1.45f);
             int y = screen.Bottom - Height - (screen.Height / 12);
-            Location = new Point(screen.Width/7, y);
+            Location = new Point((int)(screen.Width / 6.6f), y);
             Size = new Size(Width, Height);
         }
 
@@ -62,13 +63,13 @@ namespace AOGPlanterV2
 
             Graphics g = e.Graphics;
 
-            int screenW = (int)(ClientSize.Width * 1.0f); // was /2
+            int screenW = (int)(ClientSize.Width * 0.95f); // was /2
             int screenH = ClientSize.Height;
-            int xOffset = (ClientSize.Width - screenW) / 2;
+            int xOffset = (int)((ClientSize.Width - screenW) / 1.0f); // .99f
 
             int baseY = screenH - (screenH); // was / 4
             int rectHeight = screenH / 10;
-//            int rectWidth = screenW / numOfSections;
+            //            int rectWidth = screenW / numOfSections;
             int totalGapWidth = gap * (numSections - 1);
             int rectWidth = (screenW - totalGapWidth) / numOfSections;
 
@@ -107,25 +108,34 @@ namespace AOGPlanterV2
                 }
             }
         }
-
-
         private void InitializeComponent()
         {
+            btnExitRows = new Button();
             SuspendLayout();
+            // 
+            // btnExitRows
+            // 
+            btnExitRows.BackColor = Color.Maroon;
+            btnExitRows.Dock = DockStyle.Left;
+            btnExitRows.FlatStyle = FlatStyle.Flat;
+            btnExitRows.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
+            btnExitRows.ForeColor = Color.White;
+            btnExitRows.Location = new Point(0, 0);
+            btnExitRows.Name = "btnExitRows";
+            btnExitRows.Size = new Size(36, 261);
+            btnExitRows.TabIndex = 0;
+            btnExitRows.Text = "EX I T";
+            btnExitRows.UseVisualStyleBackColor = false;
+            btnExitRows.MouseClick += btnExitRows_Click;
             // 
             // FormSkipsDisplay
             // 
-            ClientSize = new Size(1449, 690);
+            ClientSize = new Size(284, 261);
+            Controls.Add(btnExitRows);
             Name = "FormSkipsDisplay";
-            Load += FormSkipsDisplay_Load;
             ResumeLayout(false);
-
         }
 
-        private void FormSkipsDisplay_Load(object sender, EventArgs e)
-        {
-            InitializeComponent();
-        }
         private void OnChartTick(object sender, EventArgs e)
         {
             if (DateTime.UtcNow - lastUpdate < updateInterval)
@@ -168,6 +178,11 @@ namespace AOGPlanterV2
                 colorBuffer[0, i] = color;
             }
         }
+        private Button btnExitRows;
 
+        private void btnExitRows_Click(object sender, MouseEventArgs e)
+        {
+             Close();
+        }
     }
 }
