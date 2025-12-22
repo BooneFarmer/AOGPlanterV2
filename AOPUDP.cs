@@ -30,6 +30,110 @@ namespace AOGPlanterV2
         //            rc = _r;
         //        }
 
+        //*********************************************
+        //Row Crop configB going out
+        public class CPGN_E9
+        {
+            /// <Arduino configB>
+            /// PGN - 233 - E9
+            /// Summary
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7b, 0xE9, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+
+
+            //where in the pgn is data
+            public int[] rcConfigB = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            public int arraySpeed = 5;
+
+            // PGN
+            int crc = 0;
+
+            public CPGN_E9()
+            {
+                pgn[arraySpeed] = 0;
+            }
+
+
+            public void MakeCRC()
+            {
+                crc = 0;
+                for (int i = 2; i < pgn.Length - 1; i++)
+                {
+                    crc += pgn[i];
+                }
+                pgn[pgn.Length - 1] = (byte)crc;
+            }
+        }
+
+            //*********************************************
+            //Row Crop array data coming in
+            public class CPGN_E8
+        {
+            /// <skip & doubles detail>
+            /// PGN - 228 - E4
+            /// Summary
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7b, 0xE8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+
+
+            //where in the pgn is data
+            public int[] rcArraySkips = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            // PGN 
+            int crc = 0;
+
+            public CPGN_E8()
+            {
+                rcArraySkips[1] = pgn[5] & 0b000011;  // first byte with data
+
+            }
+            public void MakeCRC()
+            {
+                crc = 0;
+                for (int i = 2; i < pgn.Length - 1; i++)
+                {
+                    crc += pgn[i];
+                }
+                pgn[pgn.Length - 1] = (byte)crc;
+            }
+
+            public void Reset()
+            {
+            }
+        }
+        //*********************************************
+        //Row Crop array data coming in
+        public class CPGN_E7
+        {
+            /// <doubles detail>
+            /// PGN - 227 - E3
+            /// Summary
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7b, 0xE7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+
+
+            //where in the pgn is data
+            public int[] rcArrayDoubles = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            // PGN 
+            int crc = 0;
+
+            public CPGN_E7()
+            {
+                rcArrayDoubles[1] = pgn[5] & 0b000011;  // first byte with data
+
+            }
+            public void MakeCRC()
+            {
+                crc = 0;
+                for (int i = 2; i < pgn.Length - 1; i++)
+                {
+                    crc += pgn[i];
+                }
+                pgn[pgn.Length - 1] = (byte)crc;
+            }
+
+            public void Reset()
+            {
+            }
+        }
 
         //*********************************************
         //Row Crop data coming in
@@ -326,9 +430,17 @@ namespace AOGPlanterV2
         //pgn instances
 
         /// <summary>
-        /// rowCropConfig PGN - 228 - E0
+        /// rowCropData PGN - 233 - E9
         /// </summary>
-        public CPGN_E0 p_224 = new CPGN_E0();
+        public CPGN_E9 p_233 = new CPGN_E9();
+        /// <summary>
+        /// rowCropData PGN - 232 - E8
+        /// </summary>
+        public CPGN_E8 p_232 = new CPGN_E8();
+        /// <summary>
+        /// rowCropData PGN - 231 - E7
+        /// </summary>
+        public CPGN_E7 p_231 = new CPGN_E7();
         /// <summary>
         /// rowCropData PGN - 230 - E6
         /// </summary>
@@ -357,7 +469,10 @@ namespace AOGPlanterV2
         /// rowCropPopByRow PGN - 225 - E1
         /// </summary>
         public CPGN_E1 p_225 = new CPGN_E1();
-
+        /// <summary>
+        /// rowCropConfig PGN - 228 - E0
+        /// </summary>
+        public CPGN_E0 p_224 = new CPGN_E0();
 
         public void StartUDPServer()
         {
@@ -688,7 +803,7 @@ namespace AOGPlanterV2
                                     }
                                     break;
                                 }
-                            //// Skips by row ////
+                            //// Skips array by row ////
                             case 232:
                                 {
                                     int skipIndex = -2;

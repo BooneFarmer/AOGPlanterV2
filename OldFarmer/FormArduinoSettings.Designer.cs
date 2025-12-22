@@ -60,6 +60,7 @@ namespace AOGPlanterV2.OldFarmer
             numRows = new NumericUpDown();
             lblArraySpeed = new Label();
             nudArraySpeed = new NumericUpDown();
+            btnMetric = new Button();
             ((System.ComponentModel.ISupportInitialize)nUDPopulation).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudRowSpacing).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudPlantingSpeed).BeginInit();
@@ -360,7 +361,7 @@ namespace AOGPlanterV2.OldFarmer
             // 
             btnPlanterSimulator.BackColor = Color.LawnGreen;
             btnPlanterSimulator.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPlanterSimulator.Location = new Point(83, 612);
+            btnPlanterSimulator.Location = new Point(46, 612);
             btnPlanterSimulator.Margin = new Padding(4, 3, 4, 3);
             btnPlanterSimulator.Name = "btnPlanterSimulator";
             btnPlanterSimulator.Size = new Size(252, 47);
@@ -408,12 +409,27 @@ namespace AOGPlanterV2.OldFarmer
             nudArraySpeed.ValueChanged += nudArraySpeed_ValueChanged;
             nudArraySpeed.Click += ArraySpeed_Click;
             // 
+            // btnMetric
+            // 
+            btnMetric.BackColor = Color.ForestGreen;
+            btnMetric.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnMetric.ForeColor = SystemColors.ButtonFace;
+            btnMetric.Location = new Point(330, 612);
+            btnMetric.Margin = new Padding(4, 3, 4, 3);
+            btnMetric.Name = "btnMetric";
+            btnMetric.Size = new Size(175, 47);
+            btnMetric.TabIndex = 517;
+            btnMetric.Text = "Imperial ?";
+            btnMetric.UseVisualStyleBackColor = false;
+            btnMetric.Click += Metric_Click;
+            // 
             // FormArduinoSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(50, 50, 70);
             ClientSize = new Size(933, 689);
+            Controls.Add(btnMetric);
             Controls.Add(nudArraySpeed);
             Controls.Add(lblArraySpeed);
             Controls.Add(numRows);
@@ -483,5 +499,6 @@ namespace AOGPlanterV2.OldFarmer
         private NumericUpDown numRows;
         private Label lblArraySpeed;
         private NumericUpDown nudArraySpeed;
+        private Button btnMetric;
     }
 }

@@ -7,9 +7,119 @@ namespace AOGPlanterV2
 {
 	public partial class FormAOP
 	{
-		//*********************************************
-		//Row Crop data coming in
-		public class CPGN_E6
+        //*********************************************
+        //Row Crop configB going out
+        public class CPGN_E9
+        {
+            /// <Arduino configB>
+            /// PGN - 233 - E9
+            /// Summary
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7b, 0xE9, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+
+
+            //where in the pgn is data
+            public int[] rcConfigB = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            public int arraySpeed = 5;
+
+            // PGN
+            int crc = 0;
+
+            public CPGN_E9()
+            {
+                pgn[arraySpeed] = 0;
+            }
+
+
+            public void MakeCRC()
+            {
+                crc = 0;
+                for (int i = 2; i < pgn.Length - 1; i++)
+                {
+                    crc += pgn[i];
+                }
+                pgn[pgn.Length - 1] = (byte)crc;
+            }
+
+            public void Reset()
+            {
+            }
+        }
+
+        //*********************************************
+        //Row Crop skips array data coming in
+        public class CPGN_E8
+        {
+            /// <skip & doubles detail>
+            /// PGN - 232 - E8
+            /// Summary
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7b, 0xE8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+
+
+            //where in the pgn is data
+            public int[] rcArraySkips = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            // PGN 
+            int crc = 0;
+
+            public CPGN_E8()
+            {
+                rcArraySkips[1] = pgn[5] & 0b000011;  // first byte with data
+
+            }
+            public void MakeCRC()
+            {
+                crc = 0;
+                for (int i = 2; i < pgn.Length - 1; i++)
+                {
+                    crc += pgn[i];
+                }
+                pgn[pgn.Length - 1] = (byte)crc;
+            }
+
+            public void Reset()
+            {
+            }
+        }
+        //*********************************************
+        //Row Crop doubles array data coming in
+        public class CPGN_E7
+        {
+            /// <doubles detail>
+            /// PGN - 231 - E7
+            /// Summary
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7b, 0xE7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+
+
+            //where in the pgn is data
+            public int[] rcArrayDoubles = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            // PGN 
+            int crc = 0;
+
+            public CPGN_E7()
+            {
+                rcArrayDoubles[1] = pgn[5] & 0b000011;  // first byte with data
+
+            }
+            public void MakeCRC()
+            {
+                crc = 0;
+                for (int i = 2; i < pgn.Length - 1; i++)
+                {
+                    crc += pgn[i];
+                }
+                pgn[pgn.Length - 1] = (byte)crc;
+            }
+
+            public void Reset()
+            {
+            }
+        }
+
+
+        //*********************************************
+        //Row Crop data coming in
+        public class CPGN_E6
 		{
 			/// <summary>
 			/// PGN - 230 - E6
@@ -94,80 +204,80 @@ namespace AOGPlanterV2
 			{
 			}
 		}
-		//*********************************************
-		//Row Crop data coming in
-		public class CPGN_E4
-		{
-			/// <skip & doubles detail>
-			/// PGN - 228 - E4
-			/// Summary
-			public byte[] pgn = new byte[] { 0x80, 0x81, 0x7b, 0xE4, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+        //*********************************************
+        //Row Crop data coming in
+        public class CPGN_E4
+        {
+            /// <skip & doubles detail>
+            /// PGN - 228 - E4
+            /// Summary
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7b, 0xE4, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
 
 
-			//where in the pgn is data
-			public int[] rcSkips = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            //where in the pgn is data
+            public int[] rcSkips = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-			// PGN 
-			int crc = 0;
+            // PGN 
+            int crc = 0;
 
-			public CPGN_E4()
-			{
-				rcSkips[1] = pgn[5] & 0b000011;  // first byte with data
+            public CPGN_E4()
+            {
+                rcSkips[1] = pgn[5] & 0b000011;  // first byte with data
 
-			}
-			public void MakeCRC()
-			{
-				crc = 0;
-				for (int i = 2; i < pgn.Length - 1; i++)
-				{
-					crc += pgn[i];
-				}
-				pgn[pgn.Length - 1] = (byte)crc;
-			}
+            }
+            public void MakeCRC()
+            {
+                crc = 0;
+                for (int i = 2; i < pgn.Length - 1; i++)
+                {
+                    crc += pgn[i];
+                }
+                pgn[pgn.Length - 1] = (byte)crc;
+            }
 
-			public void Reset()
-			{
-			}
-		}
-		//*********************************************
-		//Row Crop data coming in
-		public class CPGN_E3
-		{
-			/// <doubles detail>
-			/// PGN - 227 - E3
-			/// Summary
-			public byte[] pgn = new byte[] { 0x80, 0x81, 0x7b, 0xE3, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+            public void Reset()
+            {
+            }
+        }
+        //*********************************************
+        //Row Crop data coming in
+        public class CPGN_E3
+        {
+            /// <doubles detail>
+            /// PGN - 227 - E3
+            /// Summary
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7b, 0xE3, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
 
 
-			//where in the pgn is data
-			public int[] rcDoubles = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            //where in the pgn is data
+            public int[] rcDoubles = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-			// PGN 
-			int crc = 0;
+            // PGN 
+            int crc = 0;
 
-			public CPGN_E3()
-			{
-				rcDoubles[1] = pgn[5] & 0b000011;  // first byte with data
+            public CPGN_E3()
+            {
+                rcDoubles[1] = pgn[5] & 0b000011;  // first byte with data
 
-			}
-			public void MakeCRC()
-			{
-				crc = 0;
-				for (int i = 2; i < pgn.Length - 1; i++)
-				{
-					crc += pgn[i];
-				}
-				pgn[pgn.Length - 1] = (byte)crc;
-			}
+            }
+            public void MakeCRC()
+            {
+                crc = 0;
+                for (int i = 2; i < pgn.Length - 1; i++)
+                {
+                    crc += pgn[i];
+                }
+                pgn[pgn.Length - 1] = (byte)crc;
+            }
 
-			public void Reset()
-			{
-			}
-		}
+            public void Reset()
+            {
+            }
+        }
 
-		//*********************************************
-		//Row Crop data coming in
-		public class CPGN_E2
+        //*********************************************
+        //Row Crop data coming in
+        public class CPGN_E2
 		{
 			/// <pop by row detail>
 			/// PGN - 226 - E2
@@ -286,52 +396,56 @@ namespace AOGPlanterV2
 			public void Reset()
 			{
 			}
+		}
+        //*********************************************
+        //pgn instances
+
+        /// <summary>
+        /// autoSteerData - FE - 254 - 
+        /// </summary>
+        //public CPGN_FE p_254 = new CPGN_FE();
+
+        //      /// <summary>
+        //      /// autoSteerSettings PGN - 252 - FC
+        //      /// </summary>
+        //      public CPGN_FC p_252 = new CPGN_FC();
+
+        //      /// <summary>
+        //      /// autoSteerConfig PGN - 251 - FB
+        //      /// </summary>
+        //      public CPGN_FB p_251 = new CPGN_FB();
 
 
-			//*********************************************
-			//pgn instances
+        //      /// <summary>
+        //      /// machineData PGN - 239 - EF
+        //      /// </summary>
+        //      public CPGN_EF p_239 = new CPGN_EF();
 
-			/// <summary>
-			/// autoSteerData - FE - 254 - 
-			/// </summary>
-			//public CPGN_FE p_254 = new CPGN_FE();
+        //      /// <summary>
+        //      /// machineConfig PGN - 238 - EE
+        //      /// </summary>
+        //      public CPGN_EE p_238 = new CPGN_EE();
 
-			//      /// <summary>
-			//      /// autoSteerSettings PGN - 252 - FC
-			//      /// </summary>
-			//      public CPGN_FC p_252 = new CPGN_FC();
-
-			//      /// <summary>
-			//      /// autoSteerConfig PGN - 251 - FB
-			//      /// </summary>
-			//      public CPGN_FB p_251 = new CPGN_FB();
+        //      /// <summary>
+        //      /// relayConfig PGN - 236 - EC
+        //      /// </summary>
+        //      public CPGN_EC p_236 = new CPGN_EC();
 
 
-			//      /// <summary>
-			//      /// machineData PGN - 239 - EF
-			//      /// </summary>
-			//      public CPGN_EF p_239 = new CPGN_EF();
+        /// <summary>
+        /// rowCropSkipsArray PGN 232 - E8
+        /// </summary>
+        public CPGN_E8 p_232 = new CPGN_E8();
 
-			//      /// <summary>
-			//      /// machineConfig PGN - 238 - EE
-			//      /// </summary>
-			//      public CPGN_EE p_238 = new CPGN_EE();
+            /// <summary>
+            /// rowCropDoublesArray PGN 231 - E7
+            /// </summary>
+            public CPGN_E7 p_231 = new CPGN_E7();
 
-			//      /// <summary>
-			//      /// relayConfig PGN - 236 - EC
-			//      /// </summary>
-			//      public CPGN_EC p_236 = new CPGN_EC();
-
-
-			/// <summary>
-			/// LatitudeLongitude - D0 -
-			/// </summary>
-			//public CPGN_D0 p_208 = new CPGN_D0();
-
-			/// <summary>
-			/// rowCropData PGN - 230 - E6
-			/// </summary>
-			public CPGN_E6 rcData = new CPGN_E6();
+            /// <summary>
+            /// rowCropData PGN - 230 - E6
+            /// </summary>
+            public CPGN_E6 rcData = new CPGN_E6();
 
 			/// <summary>
 			/// rowCropSkipData PGN - 228 - E4
@@ -359,5 +473,4 @@ namespace AOGPlanterV2
 			public CPGN_E0 p_224 = new CPGN_E0();
 		}
 	}
-}
     

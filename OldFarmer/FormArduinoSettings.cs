@@ -1,3 +1,5 @@
+using OpenTK.Audio.OpenAL;
+
 namespace AOGPlanterV2.OldFarmer
 //namespace AOGPlanterV2
 {
@@ -119,7 +121,14 @@ namespace AOGPlanterV2.OldFarmer
                 btnPlanterSimulator.ForeColor = SystemColors.ButtonFace;
             }
 
-
+            if (AOGPlanterV2.Properties.Settings.Default.setMenu_isMetric == false)
+            {
+                btnMetric.Text = "Imperial";
+            }
+            else
+            {
+                btnMetric.Text = "Metric Units";
+            }
         }
 
         private void PMS_Exit(object sender, EventArgs e)
@@ -313,9 +322,11 @@ namespace AOGPlanterV2.OldFarmer
             {
                 udp.p_224.pgn[udp.p_224.isMetric] = unchecked((byte)(int)0);
             }
-
-            //udp.SendPgnToLoop(udp.p_224.pgn);
+            udp.p_233.pgn[udp.p_233.arraySpeed] = unchecked((byte)(int)(Properties.Settings.Default.setPlanterArraySpeed));
+            udp.SendPgnToLoop(udp.p_224.pgn);
+            udp.SendPgnToLoop(udp.p_233.pgn);
         }
+
 
         private void SavePMSettings()
         {
@@ -476,6 +487,20 @@ namespace AOGPlanterV2.OldFarmer
             Properties.Settings.Default.Save();
             btnSavePlanterSettings.Focus();
 
+        }
+
+        private void Metric_Click(object sender, EventArgs e)
+        {
+            if (AOGPlanterV2.Properties.Settings.Default.setMenu_isMetric == false)
+            {
+                AOGPlanterV2.Properties.Settings.Default.setMenu_isMetric = true;
+                btnMetric.Text = "Metric Units";
+            }
+            else
+            {
+                AOGPlanterV2.Properties.Settings.Default.setMenu_isMetric = false;
+                btnMetric.Text = "Imperial";
+            }
         }
     }
 }
