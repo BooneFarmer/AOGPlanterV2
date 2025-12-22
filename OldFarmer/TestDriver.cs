@@ -109,6 +109,13 @@ namespace AOGPlanterV2
                 mf.rc.rcDoubles[6] = 4;
                 mf.rc.rcDoubles[13] = 2;
                 mf.rc.rcDoubles[15] = 0;
+                mf.rc.rcArraySkips[0] = 0;
+                mf.rc.rcArraySkips[3] = 3;
+                mf.rc.rcArraySkips[6] = 1;
+                mf.rc.rcArraySkips[8] = 6;
+                mf.rc.rcArrayDoubles[6] = 4;
+                mf.rc.rcArrayDoubles[13] = 2;
+                mf.rc.rcArrayDoubles[15] = 0;
                 for (int i = 0; i < mf.tool.numOfSections; i++)
                 {
                     mf.rc.rcPopulation[i] = AOGPlanterV2.Properties.Settings.Default.setPlanterTargetPopulation;
@@ -127,6 +134,13 @@ namespace AOGPlanterV2
                 mf.rc.rcDoubles[6] = 2;
                 mf.rc.rcDoubles[13] = 0;
                 mf.rc.rcDoubles[15] = 1;
+                mf.rc.rcArraySkips[0] = 1;
+                mf.rc.rcArraySkips[3] = 0;
+                mf.rc.rcArraySkips[6] = 0;
+                mf.rc.rcArraySkips[8] = 3;
+                mf.rc.rcArrayDoubles[6] = 2;
+                mf.rc.rcArrayDoubles[13] = 0;
+                mf.rc.rcArrayDoubles[15] = 1;
                 for (int i = 0; i < mf.tool.numOfSections; i++)
                 {
                     mf.rc.rcPopulation[i] = Properties.Settings.Default.setPlanterTargetPopulation;

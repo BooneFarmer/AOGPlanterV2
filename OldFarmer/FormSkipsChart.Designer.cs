@@ -94,7 +94,7 @@ namespace AOGPlanterV2
             title1.Name = "Title1";
             title1.Text = "Skips & Doubles - 3 second look";
             skipChart.Titles.Add(title1);
-            skipChart.Click += skipChart_Click;
+//            skipChart.Click += skipChart_Click;
             // 
             // btnExitSC
             // 

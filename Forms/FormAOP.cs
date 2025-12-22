@@ -218,22 +218,40 @@ namespace AOGPlanterV2
             //            Form fcg = Application.OpenForms["FormSteerGraph"];
             Form fcg = Application.OpenForms["FormSkipsChart"];
             Form fch = Application.OpenForms["FormPopChart"];
+            Form skp = Application.OpenForms["ShowSkipsDisplay"];
             if (fcg != null)
             {
                 fcg.Focus();
-                return;
+//                return;
+            } else
+            {
+                Form formH = new FormSkipsChart(this);
+                formH.Show(this);
             }
-            if (fch != null)
+           if (fch != null)
             {
                 fch.Focus();
+//                return;
+            } else
+            {
+                Form formG = new OldFarmer.FormPopChart(this);
+                formG.Show(this);
+            }
+            if (skp != null)
+            {
+                skp.Focus();
                 return;
+            } else
+            {
+                ShowSkipsDisplay();
+
             }
 
-            Form formH = new FormSkipsChart(this);
-            Form formG = new OldFarmer.FormPopChart(this);
-            formG.Show(this);
-            formH.Show(this);
-            ShowSkipsDisplay();
+            //            Form formH = new FormSkipsChart(this);
+            //Form formG = new OldFarmer.FormPopChart(this);
+            //formG.Show(this);
+            //formH.Show(this);
+            //ShowSkipsDisplay();
         }
 
         private void on_Load(object sender, EventArgs e)
@@ -301,6 +319,8 @@ namespace AOGPlanterV2
                     rc.rcPopulationPercent[kk] = 0;
                     rc.rcDoubles[kk] = 0;
                     rc.rcSkips[kk] = 0;
+                    rc.rcArrayDoubles[kk] = 0;
+                    rc.rcArraySkips[kk] = 0;
                 }
                 lblDisconnected.Visible = true;
             }

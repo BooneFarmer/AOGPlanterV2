@@ -556,122 +556,152 @@ namespace AOGPlanterV2
                                     mf.rc.timeDataReceived = DateTime.Now;
                                     break;
                                 }
-                                ////// Row crop status by row -- sets color ////
-                                //case 230:   // test by Jim to catch row sensor state 16 rows stored in data[5] and data[6]
-                                //    {
+                            ////// Row crop status by row -- sets color ////
+                            //case 230:   // test by Jim to catch row sensor state 16 rows stored in data[5] and data[6]
+                            //    {
 
 
-                                //        int jptest = 0;
-                                //        int numToTest = 4;
-                                //        if (tool.numOfSections < 4) numToTest = tool.numOfSections;
-                                //        for (int i = 0; i < numToTest; i++)
-                                //        {
-                                //            jptest = data[5];
-                                //            jptest = (byte)data[5] & 0b000011;
-                                //            if (jptest == 0)
-                                //            {
-                                //                udp.mf.rc.SetStateNormal(i);
-                                //            }
-                                //            else if (jptest == 1)
-                                //            {
-                                //                udp.mf.rc.SetStateOut(i);
-                                //                if (Properties.Settings.Default.setPlanterAlarm_Active) sounds.sndDisconnected.Play();
-                                //            }
-                                //            else if (jptest == 2)
-                                //            {
-                                //                udp.mf.rc.SetStateSkip(i);
-                                //            }
-                                //            else if (jptest == 3)
-                                //            {
-                                //                udp.mf.rc.SetStateDouble(i);
-                                //            }
+                            //        int jptest = 0;
+                            //        int numToTest = 4;
+                            //        if (tool.numOfSections < 4) numToTest = tool.numOfSections;
+                            //        for (int i = 0; i < numToTest; i++)
+                            //        {
+                            //            jptest = data[5];
+                            //            jptest = (byte)data[5] & 0b000011;
+                            //            if (jptest == 0)
+                            //            {
+                            //                udp.mf.rc.SetStateNormal(i);
+                            //            }
+                            //            else if (jptest == 1)
+                            //            {
+                            //                udp.mf.rc.SetStateOut(i);
+                            //                if (Properties.Settings.Default.setPlanterAlarm_Active) sounds.sndDisconnected.Play();
+                            //            }
+                            //            else if (jptest == 2)
+                            //            {
+                            //                udp.mf.rc.SetStateSkip(i);
+                            //            }
+                            //            else if (jptest == 3)
+                            //            {
+                            //                udp.mf.rc.SetStateDouble(i);
+                            //            }
 
-                                //            data[5] = ((byte)(data[5] >> 2));
-                                //        }
+                            //            data[5] = ((byte)(data[5] >> 2));
+                            //        }
 
-                                //        numToTest = 8;
-                                //        if (tool.numOfSections < 8) numToTest = tool.numOfSections;
-                                //        for (int i = 4; i < numToTest; i++)
-                                //        {
-                                //            jptest = data[6] & 0b000011;
-                                //            if (jptest == 0)
-                                //            {
-                                //                udp.mf.rc.SetStateNormal(i);
-                                //            }
-                                //            else if (jptest == 1)
-                                //            {
-                                //                udp.mf.rc.SetStateOut(i);
-                                //                if (Properties.Settings.Default.setPlanterAlarm_Active) sounds.sndDisconnected.Play();
-                                //            }
-                                //            else if (jptest == 2)
-                                //            {
-                                //                udp.mf.rc.SetStateSkip(i);
-                                //            }
-                                //            else if (jptest == 3)
-                                //            {
-                                //                udp.mf.rc.SetStateDouble(i);
-                                //            }
+                            //        numToTest = 8;
+                            //        if (tool.numOfSections < 8) numToTest = tool.numOfSections;
+                            //        for (int i = 4; i < numToTest; i++)
+                            //        {
+                            //            jptest = data[6] & 0b000011;
+                            //            if (jptest == 0)
+                            //            {
+                            //                udp.mf.rc.SetStateNormal(i);
+                            //            }
+                            //            else if (jptest == 1)
+                            //            {
+                            //                udp.mf.rc.SetStateOut(i);
+                            //                if (Properties.Settings.Default.setPlanterAlarm_Active) sounds.sndDisconnected.Play();
+                            //            }
+                            //            else if (jptest == 2)
+                            //            {
+                            //                udp.mf.rc.SetStateSkip(i);
+                            //            }
+                            //            else if (jptest == 3)
+                            //            {
+                            //                udp.mf.rc.SetStateDouble(i);
+                            //            }
 
-                                //            data[6] = ((byte)(data[6] >> 2));
-                                //        }
+                            //            data[6] = ((byte)(data[6] >> 2));
+                            //        }
 
-                                //        numToTest = 12;
-                                //        if (tool.numOfSections < 12) numToTest = tool.numOfSections;
-                                //        for (int i = 8; i < numToTest; i++)
-                                //        {
-                                //            jptest = data[7] & 0b000011;
-                                //            if (jptest == 0)
-                                //            {
-                                //                udp.mf.rc.SetStateNormal(i);
-                                //            }
-                                //            else if (jptest == 1)
-                                //            {
-                                //                udp.mf.rc.SetStateOut(i);
-                                //                if (Properties.Settings.Default.setPlanterAlarm_Active) sounds.sndDisconnected.Play();
-                                //            }
-                                //            else if (jptest == 2)
-                                //            {
-                                //                udp.mf.rc.SetStateSkip(i);
-                                //            }
-                                //            else if (jptest == 3)
-                                //            {
-                                //                udp.mf.rc.SetStateDouble(i);
-                                //            }
+                            //        numToTest = 12;
+                            //        if (tool.numOfSections < 12) numToTest = tool.numOfSections;
+                            //        for (int i = 8; i < numToTest; i++)
+                            //        {
+                            //            jptest = data[7] & 0b000011;
+                            //            if (jptest == 0)
+                            //            {
+                            //                udp.mf.rc.SetStateNormal(i);
+                            //            }
+                            //            else if (jptest == 1)
+                            //            {
+                            //                udp.mf.rc.SetStateOut(i);
+                            //                if (Properties.Settings.Default.setPlanterAlarm_Active) sounds.sndDisconnected.Play();
+                            //            }
+                            //            else if (jptest == 2)
+                            //            {
+                            //                udp.mf.rc.SetStateSkip(i);
+                            //            }
+                            //            else if (jptest == 3)
+                            //            {
+                            //                udp.mf.rc.SetStateDouble(i);
+                            //            }
 
-                                //            data[7] = ((byte)(data[7] >> 2));
-                                //        }
+                            //            data[7] = ((byte)(data[7] >> 2));
+                            //        }
 
-                                //        numToTest = 16;
-                                //        if (tool.numOfSections < 16) numToTest = tool.numOfSections;
-                                //        for (int i = 12; i < numToTest; i++)
-                                //        {
-                                //            jptest = data[8] & 0b000011;
-                                //            if (jptest == 0)
-                                //            {
-                                //                udp.mf.rc.SetStateNormal(i);
-                                //            }
-                                //            else if (jptest == 1)
-                                //            {
-                                //                udp.mf.rc.SetStateOut(i);
-                                //                if (Properties.Settings.Default.setPlanterAlarm_Active) sounds.sndDisconnected.Play();
-                                //            }
-                                //            else if (jptest == 2)
-                                //            {
-                                //                udp.mf.rc.SetStateSkip(i);
-                                //            }
-                                //            else if (jptest == 3)
-                                //            {
-                                //                udp.mf.rc.SetStateDouble(i);
-                                //            }
+                            //        numToTest = 16;
+                            //        if (tool.numOfSections < 16) numToTest = tool.numOfSections;
+                            //        for (int i = 12; i < numToTest; i++)
+                            //        {
+                            //            jptest = data[8] & 0b000011;
+                            //            if (jptest == 0)
+                            //            {
+                            //                udp.mf.rc.SetStateNormal(i);
+                            //            }
+                            //            else if (jptest == 1)
+                            //            {
+                            //                udp.mf.rc.SetStateOut(i);
+                            //                if (Properties.Settings.Default.setPlanterAlarm_Active) sounds.sndDisconnected.Play();
+                            //            }
+                            //            else if (jptest == 2)
+                            //            {
+                            //                udp.mf.rc.SetStateSkip(i);
+                            //            }
+                            //            else if (jptest == 3)
+                            //            {
+                            //                udp.mf.rc.SetStateDouble(i);
+                            //            }
 
-                                //            data[8] = ((byte)(data[8] >> 2));
-                                //        }
+                            //            data[8] = ((byte)(data[8] >> 2));
+                            //        }
 
-                                //        udp.mf.rc.fbFeedbackCounter = (int)data[9];
+                            //        udp.mf.rc.fbFeedbackCounter = (int)data[9];
 
-                                //        break;
+                            //        break;
 
-                                //    }
+                            //    }
+                            //// Doubles array by row ////
+                            case 231:
+                                {
+
+                                    int doubleIndex = -2;
+
+                                    for (int i = 5; i < 13; i++)
+                                    {
+                                        doubleIndex += 3;
+                                        mf.rc.rcArrayDoubles[doubleIndex] = (byte)data[i] & 0b000111;
+                                        data[i] = ((byte)(data[i] >> 4));
+                                        doubleIndex -= 1;
+                                        mf.rc.rcArrayDoubles[doubleIndex] = (byte)data[i] & 0b000111;
+                                    }
+                                    break;
+                                }
+                            //// Skips by row ////
+                            case 232:
+                                {
+                                    int skipIndex = -2;
+                                    for (int i = 5; i < 13; i++)
+                                    {
+                                        skipIndex += 3;
+                                        mf.rc.rcArraySkips[skipIndex] = (byte)data[i] & 0b000111;
+                                        data[i] = ((byte)(data[i] >> 4));
+                                        skipIndex -= 1;
+                                        mf.rc.rcArraySkips[skipIndex] = (byte)data[i] & 0b000111;
+                                    }
+                                    break;
+                                }
                         }
 
                     }

@@ -26,7 +26,7 @@ namespace AOGPlanterV2
             Series d = skipChart.Series["Doubles"];
             s.Points.Clear();
             d.Points.Clear();
-            for (int i = 0; i < mf.tool.numOfSections; i++)
+            for (int i = 0; i < (int)Properties.Settings.Default.setPlanterNumRows; i++)
             {
                 skipChart.Series["Skips"].Points.AddXY(i + 1, mf.rc.rcSkips[i]);
                 skipChart.Series["Doubles"].Points.AddXY(i + 1, mf.rc.rcDoubles[i]);
@@ -81,10 +81,10 @@ namespace AOGPlanterV2
             Close();
         }
 
-        private void skipChart_Click(object sender, EventArgs e)
-        {
+        //private void skipChart_Click(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
         private void AlarmClicked(object sender, EventArgs e)
         {

@@ -15,7 +15,8 @@ namespace AOGPlanterV2
         private Color[,] colorBuffer;
         private int numSections;
         private DateTime lastUpdate = DateTime.MinValue;
-        private readonly TimeSpan updateInterval = TimeSpan.FromSeconds(3);
+        private readonly TimeSpan updateInterval = TimeSpan.FromSeconds(
+            AOGPlanterV2.Properties.Settings.Default.setPlanterArraySpeed);
         int gap = 6;   // pixels between rectangles
 
         public FormSkipsDisplay(FormAOP mainForm)
@@ -169,10 +170,10 @@ namespace AOGPlanterV2
             {
                 Color color = Color.Green;
 
-                if (mf.rc.rcDoubles[i] > 0)
+                if (mf.rc.rcArrayDoubles[i] > 0)
                     color = Color.Purple;
 
-                if (mf.rc.rcSkips[i] > 0)
+                if (mf.rc.rcArraySkips[i] > 0)
                     color = Color.Yellow; // overlays purple
 
                 colorBuffer[0, i] = color;

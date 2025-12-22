@@ -1524,5 +1524,17 @@ namespace AOGPlanterV2.Properties {
                 this["setPlanterNumRows"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int setPlanterArraySpeed {
+            get {
+                return ((int)(this["setPlanterArraySpeed"]));
+            }
+            set {
+                this["setPlanterArraySpeed"] = value;
+            }
+        }
     }
 }

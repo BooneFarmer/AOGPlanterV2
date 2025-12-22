@@ -58,11 +58,14 @@ namespace AOGPlanterV2.OldFarmer
             lblCurDoubleFactor = new Label();
             btnPlanterSimulator = new Button();
             numRows = new NumericUpDown();
+            lblArraySpeed = new Label();
+            nudArraySpeed = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)nUDPopulation).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudRowSpacing).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudPlantingSpeed).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudPlanterDoublesFactor).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numRows).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudArraySpeed).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -379,12 +382,40 @@ namespace AOGPlanterV2.OldFarmer
             numRows.ValueChanged += NumRows_Changed;
             numRows.Click += numRowsClick;
             // 
+            // lblArraySpeed
+            // 
+            lblArraySpeed.AutoSize = true;
+            lblArraySpeed.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblArraySpeed.ForeColor = SystemColors.ButtonFace;
+            lblArraySpeed.Location = new Point(580, 230);
+            lblArraySpeed.Margin = new Padding(4, 0, 4, 0);
+            lblArraySpeed.Name = "lblArraySpeed";
+            lblArraySpeed.Size = new Size(211, 20);
+            lblArraySpeed.TabIndex = 515;
+            lblArraySpeed.Text = "Array update speed (sec)";
+            // 
+            // nudArraySpeed
+            // 
+            nudArraySpeed.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            nudArraySpeed.Location = new Point(830, 212);
+            nudArraySpeed.Margin = new Padding(4, 3, 4, 3);
+            nudArraySpeed.Maximum = new decimal(new int[] { 210000, 0, 0, 0 });
+            nudArraySpeed.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudArraySpeed.Name = "nudArraySpeed";
+            nudArraySpeed.Size = new Size(72, 38);
+            nudArraySpeed.TabIndex = 516;
+            nudArraySpeed.Value = new decimal(new int[] { 2, 0, 0, 0 });
+            nudArraySpeed.ValueChanged += nudArraySpeed_ValueChanged;
+            nudArraySpeed.Click += ArraySpeed_Click;
+            // 
             // FormArduinoSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(50, 50, 70);
             ClientSize = new Size(933, 689);
+            Controls.Add(nudArraySpeed);
+            Controls.Add(lblArraySpeed);
             Controls.Add(numRows);
             Controls.Add(btnPlanterSimulator);
             Controls.Add(lblCurDoubleFactor);
@@ -418,6 +449,7 @@ namespace AOGPlanterV2.OldFarmer
             ((System.ComponentModel.ISupportInitialize)nudPlantingSpeed).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudPlanterDoublesFactor).EndInit();
             ((System.ComponentModel.ISupportInitialize)numRows).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudArraySpeed).EndInit();
             ResumeLayout(false);
             PerformLayout();
 
@@ -449,5 +481,7 @@ namespace AOGPlanterV2.OldFarmer
 		private System.Windows.Forms.Label lblCurDoubleFactor;
 		private System.Windows.Forms.Button btnPlanterSimulator;
         private NumericUpDown numRows;
+        private Label lblArraySpeed;
+        private NumericUpDown nudArraySpeed;
     }
 }
