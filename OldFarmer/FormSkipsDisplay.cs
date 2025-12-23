@@ -125,7 +125,7 @@ namespace AOGPlanterV2
             btnExitRows.Name = "btnExitRows";
             btnExitRows.Size = new Size(36, 261);
             btnExitRows.TabIndex = 0;
-            btnExitRows.Text = "EX I T";
+            btnExitRows.Text = "EXI T";
             btnExitRows.UseVisualStyleBackColor = false;
             btnExitRows.MouseClick += btnExitRows_Click;
             // 
