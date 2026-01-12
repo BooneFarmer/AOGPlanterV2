@@ -305,14 +305,25 @@ namespace AOGPlanterV2
             lblSingulation.Text = rc.sumSingulation.ToString("F1") + "%";
             lblSkipPercent.Text = rc.sumSkipPercent.ToString("F1") + "%";
             lblDoublesPercent.Text = rc.sumDoublePercent.ToString("F1") + "%";
+
             curTime = DateTime.Now;
             TimeSpan diff = curTime - rc.timeDataReceived;
 
             if (diff.TotalMilliseconds > 3500) {
-                lblPopulation.Text = "0";
-                lblSingulation.Text = "0%";
-                lblSkipPercent.Text = "0%";
-                lblDoublesPercent.Text = "0%";
+                if (AOGPlanterV2.Properties.Settings.Default.setPlanterSimulator_Active == true)
+                {
+                    lblPopulation.Text = "32000"; // rc.sumPopulation.ToString("F0");
+                    lblSingulation.Text = "98.4%"; // rc.sumSingulation.ToString("F1") + "%";
+                    lblSkipPercent.Text = "1.4%"; //rc.sumSkipPercent.ToString("F1") + "%";
+                    lblDoublesPercent.Text = ".2%"; // rc.sumDoublePercent.ToString("F1") + "%";
+                }
+                else
+                {
+                    lblPopulation.Text = "0";
+                    lblSingulation.Text = "0%";
+                    lblSkipPercent.Text = "0%";
+                    lblDoublesPercent.Text = "0%";
+                }
                 for (int kk = 0; kk < rc.fbNumSections; kk++)
                 {
                     rc.rcPopulation[kk] = 0;

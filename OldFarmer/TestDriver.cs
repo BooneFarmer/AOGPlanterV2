@@ -42,7 +42,7 @@ namespace AOGPlanterV2
         #region Test Driver
         public void TestDriver(FormAOP mf)
         {
-
+            mf.rc.sumPopulation = 32000;
             //for (int i = 0; i <= mf.tool.numOfSections; i++)
             //{
             //	String curstate = mf.rc.GetCurrentState(i);
@@ -100,6 +100,7 @@ namespace AOGPlanterV2
         #region SimGraphs
         public void SimGraphs(FormAOP mf)
         {
+
             if (mf.rc.rcSkips[3] == 0)
             {
                 mf.rc.rcSkips[0] = 0;

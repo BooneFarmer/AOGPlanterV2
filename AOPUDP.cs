@@ -11,8 +11,8 @@ namespace AOGPlanterV2
         private static Thread listenThread;
         private static int port = 9998; // Port to listen on
         private static AOPUDP udp;
-        private float summaryPopulation = 10000.0f;
-        private float summarySingulation = 88.8f;
+        private float summaryPopulation = 32000.0f;
+        private float summarySingulation = 96.7f;
         private float summaryDoublePercent = 1.1f;
         private float summarySkipPercent = 2.2f;
         private byte[] myByteData = {0x00};
@@ -514,7 +514,7 @@ namespace AOGPlanterV2
                     string receivedData = Encoding.UTF8.GetString(data);
                     msgCount += 1;
                   // UpdateLabel("123");  // works if AgOpenGPS is started
-                    mf.rc.rcSkips[5] = 6;  // likewise
+//                    mf.rc.rcSkips[5] = 6;  // likewise
 
                     if (data.Length > 4 && data[0] == 0x80 && data[1] == 0x81)
                     {
@@ -788,7 +788,7 @@ namespace AOGPlanterV2
 
                             //    }
                             //// Doubles array by row ////
-                            case 231:
+                            case 232:
                                 {
 
                                     int doubleIndex = -2;
@@ -804,7 +804,7 @@ namespace AOGPlanterV2
                                     break;
                                 }
                             //// Skips array by row ////
-                            case 232:
+                            case 231:
                                 {
                                     int skipIndex = -2;
                                     for (int i = 5; i < 13; i++)

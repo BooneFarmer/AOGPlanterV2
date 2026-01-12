@@ -29,10 +29,10 @@ namespace AOGPlanterV2.OF
         public float fbDoublesFactor = 0.0f;
         public int fbFeedbackCounter = 0;
         public bool fbIsMetric = false;
-        public float sumSkipPercent = 0;
-        public float sumDoublePercent = 0;
-        public float sumSingulation = 0;
-        public float sumPopulation = 0;
+        public float sumSkipPercent = 1.3f;
+        public float sumDoublePercent = .2f;
+        public float sumSingulation = 98.5f;
+        public float sumPopulation = 32000;
         public DateTime timePrev;
         public DateTime timeDataReceived;
         internal class SectionState
